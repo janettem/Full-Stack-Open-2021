@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 const App = () => {
-  const api_key = process.env.REACT_APP_API_KEY
+  const apiKey = process.env.REACT_APP_API_KEY
   const [countries, setCountries] = useState([])
-  const [filter, setFilter] = useState('')
+  const [countryFilter, setCountryFilter] = useState('')
   const [countriesToShow, setCountriesToShow] = useState([])
 
   useEffect(() => {
@@ -15,15 +15,15 @@ const App = () => {
 
   useEffect(() => {
     setCountriesToShow(countries.filter(country =>
-      country.name.toLowerCase().includes(filter.toLowerCase())
+      country.name.toLowerCase().includes(countryFilter.toLowerCase())
     ))
-  }, [countries, filter])
+  }, [countries, countryFilter])
 
   const selectView = (numberOfContries) => {
     if (numberOfContries === 0) {
       return <p>No matches, specify another filter</p>
     } else if (numberOfContries === 1) {
-      return <Country api_key={api_key} country={countriesToShow[0]} />
+      return <Country apiKey={apiKey} country={countriesToShow[0]} />
     } else if (numberOfContries <= 10) {
       return (
         <Countries
@@ -38,18 +38,21 @@ const App = () => {
 
   return (
     <div>
-      <FindCountries filter={filter} setFilter={setFilter} />
+      <CountryFilter
+        countryFilter={countryFilter}
+        setCountryFilter={setCountryFilter}
+      />
       {selectView(countriesToShow.length)}
     </div>
   )
 }
 
-const FindCountries = ({ filter, setFilter }) => (
+const CountryFilter = ({ countryFilter, setCountryFilter }) => (
   <div>
     find countries
     <input
-      value={filter}
-      onChange={(event) => { setFilter(event.target.value) }}
+      value={countryFilter}
+      onChange={(event) => { setCountryFilter(event.target.value) }}
     />
   </div>
 )
@@ -65,16 +68,16 @@ const Countries = ({ countries, setCountries }) => (
   </div>
 )
 
-const Country = ({ api_key, country }) => {
+const Country = ({ apiKey, country }) => {
   const [weather, setWeather] = useState()
 
   useEffect(() => {
     axios
       .get(`http://api.weatherstack.com/current`
-        + `?access_key=${api_key}`
+        + `?access_key=${apiKey}`
         + `&query=${country.capital}`)
       .then(response => { setWeather(response.data) })
-  }, [api_key, country])
+  }, [apiKey, country])
 
   return (
     <div>
