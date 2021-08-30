@@ -3,7 +3,11 @@
 
 [The Phonebook, Step 6](https://fullstackopen.com/en/part2/getting_data_from_server#exercises-2-11-2-14)
 
-Given an App component, continue to work on the phonebook application. Implement the addition of a person, prevent the user from adding names that already exist, and allow users to add phone numbers. Implement a search field that can be used to filter the list of people by name. Refactor the application by extracting at least three components from the application. Maintain the application's state and all event handlers in the App root component. Store the initial state of the application in the file db.json. Start json-server on port 3001. Modify the application such that the initial state of the data is fetched from the server using the axios-library. Complete the fetching with an Effect hook.
+[The Phonebook, Step 7-10](https://fullstackopen.com/en/part2/altering_data_in_server#exercises-2-15-2-18)
+
+Create a phonebook application. Implement the addition of a person. If a number is added to an already existing person, the new number will replace the old number. Implement a search field that can be used to filter the list of people by name.
+
+Create a server. Fetch the initial people from the server. Save the people that are added to the phonebook to the server. Make it possible for users to delete people from the phonebook.
 
 ## Usage
 Open this directory in a terminal.
