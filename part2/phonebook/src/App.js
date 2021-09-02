@@ -6,29 +6,8 @@ const App = () => {
   const [filter, setFilter] = useState('')
   const [name, setName] = useState('')
   const [number, setNumber] = useState('')
+  const [isSuccessfulOperation, setIsSuccessfulOperation] = useState(true)
   const [message, setMessage] = useState(null)
-
-  const successMessageStyle = {
-    color: 'green',
-    background: 'lightgrey',
-    fontSize: 20,
-    borderStyle: 'solid',
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 10
-  }
-
-  const errorMessageStyle = {
-    color: 'red',
-    background: 'lightgrey',
-    fontSize: 20,
-    borderStyle: 'solid',
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 10
-  }
-
-  const [messageStyle, setMessageStyle] = useState({})
 
   useEffect(() => {
     personService
@@ -50,7 +29,7 @@ const App = () => {
         .then(returnedPerson => {
           setPersons(persons.concat(returnedPerson))
           clearPersonForm()
-          setNotification(`Added ${returnedPerson.name}`, successMessageStyle)
+          setNotification(`Added ${returnedPerson.name}`, true)
         })
     }
   }
@@ -67,13 +46,12 @@ const App = () => {
             person.id !== personToUpdate.id ? person : returnedPerson
           ))
           clearPersonForm()
-          setNotification(`Replaced ${personToUpdate.name}'s number`,
-            successMessageStyle)
+          setNotification(`Replaced ${personToUpdate.name}'s number`, true)
         })
         .catch(() => {
           setPersons(persons.filter(person => person.id !== personToUpdate.id))
           setNotification('Information of ' + personToUpdate.name
-            + ' has already been removed from server', errorMessageStyle)
+            + ' has already been removed from server', false)
         })
     }
   }
@@ -84,7 +62,7 @@ const App = () => {
         .remove(personToRemove.id)
         .then(() => {
           setPersons(persons.filter(person => person.id !== personToRemove.id))
-          setNotification(`Deleted ${personToRemove.name}`, successMessageStyle)
+          setNotification(`Deleted ${personToRemove.name}`, true)
         })
     }
   }
@@ -94,8 +72,8 @@ const App = () => {
     setNumber('')
   }
 
-  const setNotification = (message, messageStyle) => {
-    setMessageStyle(messageStyle)
+  const setNotification = (message, isSuccessfulOperation) => {
+    setIsSuccessfulOperation(isSuccessfulOperation)
     setMessage(message)
     setTimeout(() => setMessage(null), 5000)
   }
@@ -107,7 +85,10 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification message={message} messageStyle={messageStyle} />
+      <Notification
+        message={message}
+        isSuccessfulOperation={isSuccessfulOperation}
+      />
       <Filter filter={filter} setFilter={setFilter} />
 
       <h2>Add a new</h2>
@@ -167,13 +148,37 @@ const Person = ({ person, removePerson }) => (
   </p>
 )
 
-const Notification = ({ message, messageStyle }) => {
+const Notification = ({ message, isSuccessfulOperation }) => {
+  const successfulOperationStyle = {
+    color: 'green',
+    background: 'lightgrey',
+    fontSize: 20,
+    borderStyle: 'solid',
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 10
+  }
+
+  const unsuccessfulOperationStyle = {
+    color: 'red',
+    background: 'lightgrey',
+    fontSize: 20,
+    borderStyle: 'solid',
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 10
+  }
+
+  const style = isSuccessfulOperation
+    ? successfulOperationStyle
+    : unsuccessfulOperationStyle
+
   if (message === null) {
     return null
   }
 
   return (
-    <div style={messageStyle}>
+    <div style={style}>
       {message}
     </div>
   )
