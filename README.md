@@ -15,11 +15,15 @@ Given an application, expand it by adding a button that can be clicked to displa
 ### Course Information and Separate Module
 Continue to work on the Course Information exercise. Define a component responsible for formatting a single course called Course. Calculate the sum of exercises with the array method reduce. Declare the Course component as a separate module, which is imported by the App component.
 
-### The Phonebook
+### Phonebook
 Create a phonebook application. Implement the addition of a person. If a number is added to an already existing person, the new number will replace the old number. Make it possible for users to delete people from the phonebook. Implement a search field that can be used to filter the list of people by name. Create a server. Fetch the initial people from the server. Save the people that are added to the phonebook to the server. Show a notification that lasts for a few seconds after a person is added or deleted or a number is changed. Show a notification when changing a number fails.
 
 ### Data for Countries
 Create an application, in which one can look at data of various countries. The country to be shown is found by typing a search query into the search field. If there are over 10 countries that match the query, then the user is prompted to make their query more specific. If there are ten or fewer countries, but more than one, then all countries matching the query are shown. When there is only one country matching the query, then the basic data of the country, its flag and the languages spoken there, are shown. When the names of multiple countries are shown on the page there is a button next to the name of the country, which when pressed shows the view for that country. Add to the view showing the data of a single country, the weather report for the capital of that country.
+
+## Part 3
+### Phonebook Backend
+Implement a server that returns phonebook entries. Implement a page to show the time of the request and the number of entries in the phonebook. Implement the displaying, adding, and deleting of a phonebook entry.
 
 ## Part 7
 ### Routed Anecdotes
