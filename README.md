@@ -23,7 +23,7 @@ Create an application, in which one can look at data of various countries. The c
 
 ## Part 3
 ### Phonebook Backend
-Implement a server that returns phonebook entries. Implement a page to show the time of the request and the number of entries in the phonebook. Implement the displaying, adding, and deleting of a phonebook entry.
+Implement a server that returns phonebook entries. Implement a page to show the time of the request and the number of entries in the phonebook. Implement the displaying, adding, and deleting of a phonebook entry. Add the morgan middleware. Configure it to log the tiny configuration and the data sent in requests.
 
 ## Part 7
 ### Routed Anecdotes
