@@ -1,0 +1,1 @@
+DELETE https://still-hollows-11677.herokuapp.com/api/persons/1
