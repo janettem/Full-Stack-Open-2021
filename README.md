@@ -1,5 +1,5 @@
-# Full-Stack-open-2021
-[Full Stack open 2021](https://fullstackopen.com/en/)
+# Full-Stack-Open-2021
+[Full Stack Open 2021](https://fullstackopen.com/en/)
 
 ## Part 1
 ### Course Information
